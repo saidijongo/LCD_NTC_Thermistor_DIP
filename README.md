@@ -16,3 +16,7 @@ Calculator:
 https://thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html
 Steinhart-Hart equation:
 https://www.ametherm.com/thermistor/ntc-thermistors-steinhart-and-hart-equation
+
+
+![image](https://github.com/saidijongo/LCD_NTC_Thermistor_DIP/assets/31678025/c8d6bd64-d444-4b0c-8b4b-01770fd0549e)
+
