@@ -23,4 +23,7 @@ https://www.ametherm.com/thermistor/ntc-thermistors-steinhart-and-hart-equation
 
 ![image](https://github.com/saidijongo/LCD_NTC_Thermistor_DIP/assets/31678025/d67c196c-5d48-4d1c-b64d-c8e6904af965)
 
+![image](https://github.com/saidijongo/LCD_NTC_Thermistor_DIP/assets/31678025/fda1ea7c-6ae0-481d-9748-03b63f463947)
+
+
 
