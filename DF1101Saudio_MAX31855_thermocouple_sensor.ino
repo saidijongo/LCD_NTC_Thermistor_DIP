@@ -146,39 +146,112 @@ void display(float t) {
 
 // Function to handle temperature announcements
 void announcements(float temp) {
-  // Determine activity level based on temperature change
+  // Check if temperature change is significant for activity level determination
   if (abs(temp - lasttemp) >= 2 && abs(temp - lasttemp) < 5) {
+    // Temperature change is significant, set activity level to true
     active = true;
   } else {
+    // Temperature change is not significant, set activity level to false
     active = false;
   }
+
+  // Check if temperature change is extra significant for extended activity level determination
   if (abs(temp - lasttemp) >= 5) {
     extraactive = true;
   } else {
     extraactive = false;
   }
+
+  // Print temperature change for debugging
   Serial.println(temp - lasttemp);
   
   // Perform temperature-based announcements
   if (temp < 170) {
+    // Temperature is low, wood is needed
     if (!announced) {
-      // Need more wood
-      df1101s.playSpecFile(11);
-      delay(4000);
-      announced = true;
-      active = false;
-      extraactive = false;
+      df1101s.playSpecFile(11); // Play audio file indicating need for more wood
+      delay(4000); // Delay for audio playback
+      announced = true; // Mark announcement as done
+      active = false; // Reset activity level
+      extraactive = false; // Reset extended activity level
+    }
+  } else if ((temp - lasttemp <= -0.9) && (temp - lasttemp > -1.7)) {
+    // Temperature is dropping moderately, approaching low threshold
+    if (temp < 350) {
+      // Temperature is below 350°F
+      if (!announced) {
+        df1101s.playSpecFile(13); // Play audio file indicating temperature is going out
+        delay(4000); // Delay for audio playback
+        announced = true; // Mark announcement as done
+      }
+    }
+  } else if ((temp - lasttemp <= -1.7)) {
+    // Temperature is dropping rapidly
+    if (temp < 350) {
+      // Temperature is below 350°F
+      if (!announced) {
+        df1101s.playSpecFile(12); // Play audio file indicating temperature is dropping fast
+        delay(4000); // Delay for audio playback
+        announced = true; // Mark announcement as done
+      }
+    }
+  } else if ((temp - lasttemp >= 2) && (temp - lasttemp < 4)) {
+    // Temperature is rising moderately
+    if (temp > 450) {
+      // Temperature is above 450°F
+      if (!announced) {
+        df1101s.playSpecFile(14); // Play audio file indicating temperature is warming up
+        delay(4000); // Delay for audio playback
+        announced = true; // Mark announcement as done
+      }
+    }
+  } else if (temp - lasttemp >= 4) {
+    // Temperature is rising rapidly
+    if (temp > 550) {
+      // Temperature is above 550°F
+      if (!announced) {
+        df1101s.playSpecFile(15); // Play audio file indicating temperature is rising fast
+        delay(4000); // Delay for audio playback
+        announced = true; // Mark announcement as done
+      }
+    }
+    if (temp > 600 && temp <= 675) {
+      // Temperature is in a critical range
+      if (!announced) {
+        df1101s.playSpecFile(16); // Play audio file indicating temperature is rising too fast
+        delay(4000); // Delay for audio playback
+        announced = true; // Mark announcement as done
+      }
+    }
+    if (temp > 675) {
+      // Temperature is dangerously high
+      if (!announced) {
+        df1101s.playSpecFile(18); // Play audio file indicating temperature is too high
+        delay(4000); // Delay for audio playback
+        announced = true; // Mark announcement as done
+      }
     }
   }
 
-  // More announcement conditions based on temperature change and threshold
+  // Check if temperature is below a certain threshold and stable
+  if (temp <= 90) {
+    if (temp - lasttemp <= 0.3) {
+      // Temperature is very low and stable
+      off = true;
+    } else {
+      // Temperature is not stable or above the threshold
+      off = false;
+    }
+  }
 
-  // Update last temperature and timing variables
+  // Print last temperature and temperature change rate for monitoring
   Serial.print("Last temp:");
   Serial.println(lasttemp);
   fpm = temp - lasttemp;
   Serial.print("F per minute:");
   Serial.println(fpm);
+
+  // Update last temperature and timing variables
   lasttemp = temp;
   lastmillis = millis();
 }
