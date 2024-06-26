@@ -26,4 +26,8 @@ https://www.ametherm.com/thermistor/ntc-thermistors-steinhart-and-hart-equation
 ![image](https://github.com/saidijongo/LCD_NTC_Thermistor_DIP/assets/31678025/fda1ea7c-6ae0-481d-9748-03b63f463947)
 
 
+STM32 16x2 LCD lm016l
+https://deepbluembedded.com/stm32-lcd-16x2-tutorial-library-alphanumeric-lcd-16x2-interfacing/
+
+
 
