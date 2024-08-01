@@ -29,5 +29,8 @@ https://www.ametherm.com/thermistor/ntc-thermistors-steinhart-and-hart-equation
 STM32 16x2 LCD lm016l
 https://deepbluembedded.com/stm32-lcd-16x2-tutorial-library-alphanumeric-lcd-16x2-interfacing/
 
+ATMEGA128 LCD/ address based code
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ga1267&logNo=220046182859
+
 
 
